@@ -8,32 +8,28 @@ const imgOfGallary = galleryItems.map(({ preview, original, description }) => {
 });
 gallery.innerHTML = imgOfGallary.join("");
 
-gallery.addEventListener("click", getOriginalImg);
 
+gallery.addEventListener("click", getOriginalImg);
 let lightboxInstance;
 function getOriginalImg(e) {
+
   e.preventDefault();
   if (e.target.nodeName !== "IMG") {
     return;
   }
+
   const imgUrl = e.target.getAttribute("data-source");
   lightboxInstance = basicLightbox.create(
-    `<img src="${imgUrl}" width='1280' heigth='853'>`
+    `<img src="${imgUrl}" width='1280' height='853'>`
   );
   lightboxInstance.show();
 
   window.addEventListener("keydown", onCloseKeydown);
-  
+
   function onCloseKeydown(e) {
     if (e.code === "Escape") {
       lightboxInstance.close();
       window.removeEventListener("keydown", onCloseKeydown);
     }
-  };
+  }
 }
-  
-  
-  
-  
-  
-  
